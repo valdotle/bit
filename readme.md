@@ -20,16 +20,16 @@ The **import path** determines the type of the bitfield:
 ```go
     import (
         "github.com/valdotle/bit/field"        // bitfield of type int - Note how it's not "bit/field/int"
-        "github.com/valdotle/bit/field/string" // bitfield of type string
+        stringfield "github.com/valdotle/bit/field/string" // bitfield of type string
         "github.com/valdotle/bit/field/big"    // bitfield of type big.Int
     )
 
     flag := 2
-    field.Has(9, flag)
+    field.Has(9, flag)           // false
 
-    string.Has("9", flag)
+    stringfield.Has("9", flag)   // false
 
-    big.Has(big.NewInt(9), flag)
+    big.Has(big.NewInt(9), flag) // false
 ```
 
 **Methods** are defined at the parent folder of the corresponding function and are implemented as aliases:
@@ -41,7 +41,7 @@ The **import path** determines the type of the bitfield:
     )
 
     flag := 2
-    field.Has(9, flag) // false
+    field.Has(9, flag)     // false
 
     bit.Field(9).Has(flag) // false
 ```
