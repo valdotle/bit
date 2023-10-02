@@ -3,33 +3,37 @@ Module **bit** comes with a variety of utility functions for use with **bitfield
 The module offers functionality for use with go built-in types (`string`, `int` and `big.Int`) as well as aliases for these types to use methods instead.
 
 The module exposes variations of the following functions:
+
 ```go
     Has() bool // whether a bitfield includes the flag specified; always only returns a boolean
     Add()      // add a flag to a bitfield (set corresponding bit to 1 / true)
     Flip()     // flip a flag's state in a bitfield (flip corresponding bit)
     Remove()   // remove a flag from a bitfield (set corresponding bit to 0 / false)
 ```
+
 Note that all functions' (except for `Has()`) return value matches the type of the bitfield. This means, that methods defined on an alias type bitfield return a bitfield of that alias type as well.
 
-The combination of **import path** and function / method **suffix** determines the data type of the bitfield and flag. This explained in more detail below. **`int` is assumed as the default / most common bitfield type and thus doesn't need to be explicitly specified.**
+The combination of **import path** and function / method **suffix** determines the data type of the bitfield and flag. This is explained in more detail below. **`int` is assumed as the default / most common bitfield type and thus doesn't need to be explicitly specified.**
 
 The **import path** determines the type of the bitfield:
+
 ```go
     import (
-        "github.com/valdotle/bit/field"        // bitfield of type int - Note how it's not "bit/field/int"  
+        "github.com/valdotle/bit/field"        // bitfield of type int - Note how it's not "bit/field/int"
         "github.com/valdotle/bit/field/string" // bitfield of type string
         "github.com/valdotle/bit/field/big"    // bitfield of type big.Int
     )
 
     flag := 2
-    field.Has(9, flag) 
-    
+    field.Has(9, flag)
+
     string.Has("9", flag)
 
     big.Has(big.NewInt(9), flag)
-```    
+```
 
 **Methods** are defined at the parent folder of the corresponding function and are implemented as aliases:
+
 ```go
     import (
         "github.com/valdotle/bit"       // methods for bitfield of type alias int
@@ -38,11 +42,12 @@ The **import path** determines the type of the bitfield:
 
     flag := 2
     field.Has(9, flag) // false
-    
+
     bit.Field(9).Has(flag) // false
-```    
+```
 
 Additionally, function and method name **suffixes** determine the flag's type:
+
 ```go
     import stringfield "github.com/valdotle/bit/field/string"
 
@@ -54,4 +59,5 @@ Additionally, function and method name **suffixes** determine the flag's type:
 
     stringfield.HasBig(field, big.NewInt(2)) // flag of type big.Int
 ```
+
 Note, that **`int` bitfields don't allow checking against flags of type `string` or `big.Int`** (meaning they don't expose `HasString()` nor `HasBig()`) as those are intended to be used where integer limitations are exceeded and as such can't be parsed as integers anymore.
