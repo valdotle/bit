@@ -19,9 +19,9 @@ The **import path** determines the type of the bitfield:
 
 ```go
     import (
-        "github.com/valdotle/bit/field"        // bitfield of type int - Note how it's not "bit/field/int"
+        "github.com/valdotle/bit/field"                    // bitfield of type int - Note how it's not "bit/field/int"
         stringfield "github.com/valdotle/bit/field/string" // bitfield of type string
-        "github.com/valdotle/bit/field/big"    // bitfield of type big.Int
+        "github.com/valdotle/bit/field/big"                // bitfield of type big.Int
     )
 
     flag := 2
