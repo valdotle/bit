@@ -1,3 +1,9 @@
+[![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/valdotle/bit.svg)](https://github.com/valdotle/bit)
+[![GoDoc reference example](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/valdotle/bit)
+[![GoReportCard example](https://goreportcard.com/badge/github.com/valdotle/bit)](https://goreportcard.com/report/github.com/valdotle/bit)
+[![GitHub license](https://badgen.net/github/license/valdotle/bit)](https://github.com/valdotle/bit/blob/main/LICENSE)
+[![Github tag](https://badgen.net/github/tag/valdotle/bit)](https://github.com/valdotle/bit/tags/)
+
 Module **bit** comes with a variety of utility functions for use with **bitfields**.
 
 The module offers functionality for use with go built-in types (`string`, `int` and `big.Int`) as well as aliases for these types to use methods instead.
@@ -13,7 +19,7 @@ The module exposes variations of the following functions:
 
 Note that all functions' (except for `Has()`) return value matches the type of the bitfield. This means, that methods defined on an alias type bitfield return a bitfield of that alias type as well.
 
-The combination of **import path** and function / method **suffix** determines the data type of the bitfield and flag. This is explained in more detail below. **`int` is assumed as the default / most common bitfield type and thus doesn't need to be explicitly specified.**
+The combination of **import path** and function / method **suffix** determines the data type of the bitfield and flag. This is explained in more detail below. **`int` is assumed as the default / most common bitfield type and thus doesn't need to be explicitly specified.** Bitfields of type `string` and `big.Int` are intended to be used where integer limitations are exceeded and **only then**. Since no checks are performed whether a string or bigint passed actually has to be handled as such, all string and bigint related functions **always** use `math/big`'s `big.Int` and thus have a significantly slower performance. 
 
 The **import path** determines the type of the bitfield:
 
